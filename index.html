@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body> 
+        <nav class="navbar bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand nav-item text-light" id="home-link">FOOTSTATS</a>
+
+                <ul class="navbar-nav me-auto d-flex flex-row">
+                    <li class="nav-item me-2">
+                        <a class="text-light nav-link" href="#" id="category-link">TEAMS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text-light nav-link" href="#" id="countries-link">TOP SCORERS</a>
+                    </li>
+                </ul>   
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+          <div class="container mt-5" id="main-container">
+
+            <div class="row" id="featured-teams">
+                <div class="card col-12">
+                    <div class="row">
+                    <div class="col-6">
+                        <img class="card-img" id="feat-team-img" src="./ass/download.png" alt="lock">
+                    </div>
+                    <div class="col-6 card-body">
+                        <h2 class="card-title">club name</h2>
+                        <img class="player-image" src="./ass/download.png" alt="">
+                        <p class="player-name">name</p>
+                        <p class="card-text">club description</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row mt-3" id="scorers-category">
+                <div class="card col-4">
+                    <img class="card-img-top" src="./ass/download.png" alt="">
+                    <h4 class="card-title">name</h4>
+                    <p class="scores">21 goals</p>
+                </div>
+            </div>
+          </div>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
