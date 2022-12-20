@@ -1,9 +1,8 @@
 document.addEventListener(`DOMContentLoaded`, () =>{
 
     const topScorer = document.getElementById(`player`)
-    
+    const searchRow = document.getElementById(`search-result`)
     const topScorerLink = document.getElementById(`countries-link`)
-
     const teamLink = document.getElementById(`team-link`)
 
     //click events
@@ -11,8 +10,19 @@ document.addEventListener(`DOMContentLoaded`, () =>{
         topScorer.removeAttribute("hidden")
         topScorer.style.display="flex"
     })
+    //search event listener
+    const searchForm = document.getElementById(`search-form`)
+    const searchInput = document.getElementById(`search`)
     
-    
+
+    searchForm.addEventListener(`submit`, (e) =>{
+        e.preventDefault()
+        const query = searchInput.value
+        searchPlayer(query)
+        topScorer.style.display="none"
+        searchRow.style.display="flex"
+        searchRow.removeAttribute("hidden")
+    })
 
 
 
@@ -75,10 +85,20 @@ document.addEventListener(`DOMContentLoaded`, () =>{
    }
    loadTopScorers()
    
+   const searchPlayer = (player) =>{
+    fetch(`${SEARCH}${player}`)
+        .then((response) => response.json())
+        .then((data) =>{
+            const playerDataList = data.player
+            const searchResult = playerDataList.map(
+                playerData =>{
+                    const title = playerData.name
+                    const image = playerData.photo
+
+                    return searchPlayer(title, image)
+                }
+            )
+            searchRow.replaceChild(...searchResult)
+        })
+   }
 })
-// fetch(`http://localhost:3000/response`)
-//      .then((response) => response.json())
-//      .then((data) =>{
-//         const teamData = data[0].player.photo
-//         console.log(teamData)
-//      })

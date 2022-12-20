@@ -30,9 +30,9 @@
                         <a class="text-light nav-link" href="#" id="countries-link">TOP SCORERS</a>
                     </li>
                 </ul>   
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+              <form class="d-flex"id="search-form" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"id="search">
+                <button class="btn btn-outline-success" id="searchBtn" type="submit">Search</button>
               </form>
             </div>
           </nav>
@@ -41,6 +41,29 @@
                 <div class="card col-4">
                 </div>
           </div>
+          <div class="form-container">
+            <form action="action_page.php" method="post">
+                <div class="imgcontainer">
+                  <img src="" alt="" class="avatar">
+                </div>
+                <div class="container">
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="uname" required disabled>
+              
+                  <label for="psw" aria-disabled="true"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" required disabled>
+              
+                  <button type="submit" disabled>Login</button>
+                  <label>
+                    <input type="checkbox" checked="checked" name="remember" disabled> Remember me
+                  </label>
+                </div>
+                <div class="container" style="background-color:#f1f1f1" aria-disabled="true">
+                  <button type="button"aria-disabled="true" class="cancelbtn">Cancel</button>
+                  <span class="psw">Forgot <a href="#" disabled>password?</a></span>
+                </div>
+              </form>
+         </div>
     <script src="./js/bootstrap.bundle.js"></script>
     <script src="./js/index.js"defer></script>
 </body>
