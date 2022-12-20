@@ -1,5 +1,22 @@
 document.addEventListener(`DOMContentLoaded`, () =>{
+
+    const topScorer = document.getElementById(`player`)
     
+    const topScorerLink = document.getElementById(`countries-link`)
+
+    const teamLink = document.getElementById(`team-link`)
+
+    //click events
+    topScorerLink.addEventListener(`click`, () => {
+        topScorer.removeAttribute("hidden")
+        topScorer.style.display="flex"
+    })
+    
+    
+
+
+
+
     const createTopScorers = (image, title, goals) =>{
 
         const rowDiv = document.createElement(`div`)
@@ -35,9 +52,33 @@ document.addEventListener(`DOMContentLoaded`, () =>{
 
     fetch(`http://localhost:3000/response`)
          .then((response) => response.json())
-         .then((data) => console.log(data))
+         .then((data) =>{
+            for(let i=0; i<data.length; i++){
+
+            const imageData = data[i].player            
+            const image = imageData.photo
+
+            const playerData = data[i].player
+            const title = playerData.name
+
+            const goalData = data[i].statistics
+            const goals = goalData.statistics
+
+            const playerElement = createTopScorers(image, title, goals)
+
+            topScorer.appendChild(playerElement)
+            
+            }
+         })
 
 
    }
    loadTopScorers()
+   
 })
+// fetch(`http://localhost:3000/response`)
+//      .then((response) => response.json())
+//      .then((data) =>{
+//         const teamData = data[0].player.photo
+//         console.log(teamData)
+//      })
