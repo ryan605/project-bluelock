@@ -34,7 +34,7 @@ Follow the following steps:
 
 -Install JavaScript dependencies
 
-    npm install
+    npm start
 
 live server link
 
