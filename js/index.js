@@ -27,7 +27,7 @@ document.addEventListener(`DOMContentLoaded`, () =>{
 
 
 
-    const createTopScorers = (image, title, goals) =>{
+    const createTopScorers = (photo, title, goals) =>{
 
         const rowDiv = document.createElement(`div`)
         rowDiv.classList.add(`row`,`mt-3`)
@@ -37,7 +37,7 @@ document.addEventListener(`DOMContentLoaded`, () =>{
 
         const playerImg = document.createElement(`img`)
         playerImg.classList.add(`card-img-top`)
-        playerImg.scr = image
+        playerImg.scr = photo
 
         const playerTitile = document.createElement(`h4`)
         playerTitile.classList.add(`card-title`)
@@ -69,7 +69,7 @@ document.addEventListener(`DOMContentLoaded`, () =>{
             const image = imageData.photo
 
             const playerData = data[i].player
-            const title = playerData.name
+            const title = playerData.firstname
 
             const goalData = data[i].statistics
             const goals = goalData.statistics
@@ -93,9 +93,8 @@ document.addEventListener(`DOMContentLoaded`, () =>{
             const searchResult = playerDataList.map(
                 playerData =>{
                     const title = playerData.name
-                    const image = playerData.photo
 
-                    return searchPlayer(title, image)
+                    return searchPlayer(title)
                 }
             )
             searchRow.replaceChild(...searchResult)
