@@ -1,6 +1,11 @@
+let TEAM_API = (`http://localhost:3000/response`)
+
 document.addEventListener(`DOMContentLoaded`,() =>{
     
-const createFeaturedTeams = (image, title, player_image, name, club_description) =>{
+const createFeaturedTeams = (image, title, player_image, name,) =>{
+    const mainDiv = document.createElement(`div`)
+    mainDiv.classList.add(`row`,`mt-1`)
+
     const cardDiv = document.createElement (`div`)
     cardDiv.classList.add(`card`,`col-12`)
 
@@ -10,63 +15,112 @@ const createFeaturedTeams = (image, title, player_image, name, club_description)
     const imgDiv = document.createElement(`div`)
     imgDiv.classList.add(`col-6`)
 
-    const bodyDiv = document.createElement(`div`)
-    bodyDiv.classList.add(`col-6`,`card-body`)
-
     const teamImg = document.createElement(`img`)
     imgDiv.classList.add(`card-img`)
     teamImg.src = image
+
+    const secondDiv = document.createElement(`div`)
+    secondDiv.classList.add(`card-img-top`)
+
+    const playerImg = document.createElement(`img`)
+    playerImg.classList.add(`player-image`,`mt-5`)
+    playerImg.scr = player_image
+
+    const bodyDiv = document.createElement(`div`)
+    bodyDiv.classList.add(`col-6`,`card-body`)
 
     const clubTitle = document.createElement(`h2`)
     clubTitle.classList.add(`card-title`)
     clubTitle.innerText = title
 
-    const playerImg = document.createElement(`img`)
-    playerImg.classList.add(`player-image`)
-    playerImg.scr = player_image
-
     const playerName = document.createElement(`p`)
     playerName.classList.add(`player-name`)
     playerName.innerText = name
 
-    const clubDescription = document.createElement(`p`)
-    clubDescription.classList.add(`card-text`)
-    clubDescription.innerText = club_description
+  //appending images
+  imgDiv.appendChild(teamImg)
+  secondDiv.appendChild(playerImg)
 
-    bodyDiv.appendChild(clubTitle)
-    bodyDiv.appendChild(playerImg)
-    bodyDiv.appendChild(playername)
-    bodyDiv.appendChild(clubDescription)
+  //append innermost nodes
+  bodyDiv.appendChild(clubTitle)
+  bodyDiv.appendChild(playerName)
 
-    imgDiv.appendChild(teamImg)
+  //append divs
+  rowDiv.appendChild(imgDiv)
+  rowDiv.appendChild(secondDiv)
+  rowDiv.appendChild(bodyDiv)
 
-    rowDiv.appendChild(imgDiv)
-    rowDiv.appendChild(bodyDiv)
+  cardDiv.appendChild(rowDiv)
+  mainDiv.appendChild(cardDiv)
 
-    cardDiv.appendChild(rowDiv)
-
-return cardDiv()
-
+  return cardDiv
+   
 }
+document.getElementById(`featuredElement`).appen(
+    createFeaturedTeams(`bluelock.pneg`,`js`,`ihskbd`)
+)
+
+
+    //load featured teams
+ const loadFeaturedTeams = () => {
+     fetch(TEAM_API)
+         .then((response) => response.json())
+         .then((data) => {
+           const teamData = data[0]
+
+           const image = teamData.statistics.logo
+           
+           const title = teamData.statistics.name
+           
+           const player_image = teamData.player.photo
+           
+           const name = teamData.player.name
+
+           const featuredElement = createFeaturedTeams(image, title, player_image, name)
+           document.getElementById(`featured-team`).appendChild(featuredElement)
+
+           
+       })
     
-    
+ }
+ loadFeaturedTeams()
 })
+const createTopScorers = (photo, scores, jina) =>{
+    const divCard = document.createElement(`div`)
+    divCard.classList.add(`card`,`col-4`)
+
+    const playerImage = document.createElement(`img`)
+    playerImage.classList.add(`card-img-top`)
+    playerImage.src = photo
+
+    const playerJina = document.createElement(`h4`)
+    playerJina.classList.add(`card-title`)
+    playerJina.innerText = jina
+
+    const playerScores = document.createElement(`p`)
+    playerScores.classList.add(`scores`)
+    playerScores.innerText = scores
+
+    //append 
+    divCard.appendChild(playerImage)
+    divCard.appendChild(playerJina)
+    divCard.appendChild(playerScores)
+}
+
+// //load top scorers
+ const loadTopScorers = () =>{
+     fetch(`http://localhost:3000/response`)
+         .then((response) => response.json())
+         .then((data) => {
+             const playerData = data[0]
+             const jina = playerData.player.name
+             const scores = playerData.statistics.goals
+             const photo = playerData.player.photo
+            const teamElement = createTopScorers(jina, scores, photo)
+             document.getElementById(`scorers-category`).appendchild(...teamElement)
+         }) 
+        
 
 
-
-
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '21b12f990amsh5e740a5393b2ccdp1db4f2jsn99cc3bdfcb4e',
-		'X-RapidAPI-Host': 'api-football-beta.p.rapidapi.com'
-	}
-};
-
-
-fetch('https://api-football-beta.p.rapidapi.com/players/topscorers?season=2019&league=39',options)
-	.then(response => response.json())
-	.then((data) => {
-        console.log(data)
-    })
-    
+ }
+loadTopScorers()

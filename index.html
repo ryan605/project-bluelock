@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body> 
+    <style>
+        body {
+          background-image: url('bluelock.jpeg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        </style>
+
         <nav class="navbar bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand nav-item text-light" id="home-link">FOOTSTATS</a>
@@ -29,22 +38,24 @@
           </nav>
           <div class="container mt-5" id="main-container">
 
-            <div class="row" id="featured-teams">
+            <div class="row mt-1" id="featured-teams">
                 <div class="card col-12">
                     <div class="row">
                     <div class="col-6">
                         <img class="card-img" id="feat-team-img" src="./ass/download.png" alt="lock">
                     </div>
+                    <div class="card-img-top">
+                        <img class="player-image mt-5" src="./ass/download.png" alt="">
+                    </div>
                     <div class="col-6 card-body">
                         <h2 class="card-title">club name</h2>
-                        <img class="player-image" src="./ass/download.png" alt="">
                         <p class="player-name">name</p>
                         <p class="card-text">club description</p>
                     </div>
                 </div>
+                 </div>
             </div>
-            </div>
-            <div class="row mt-3" id="scorers-category">
+            <div class="row mt-3" id="category">
                 <div class="card col-4">
                     <img class="card-img-top" src="./ass/download.png" alt="">
                     <h4 class="card-title">name</h4>
@@ -53,6 +64,6 @@
             </div>
           </div>
     <script src="./js/bootstrap.bundle.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js"defer></script>
 </body>
 </html>

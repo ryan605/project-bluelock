@@ -1,0 +1,19 @@
+{
+  "name": "project_bluelock",
+  "version": "1.0.0",
+  "description": "footstats",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryan605/project-bluelock.git"
+  },
+  "author": "Ryan Langat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryan605/project-bluelock/issues"
+  },
+  "homepage": "https://github.com/ryan605/project-bluelock#readme"
+}
