@@ -4,6 +4,7 @@
   "description": "footstats",
   "main": "index.js",
   "scripts": {
+    "start": "json-server --watch db.json",
     "test": "npm start"
   },
   "repository": {

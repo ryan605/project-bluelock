@@ -30,6 +30,14 @@ document.addEventListener(`DOMContentLoaded`, () =>{
 
         return rowDiv
     }
-    
+   //load top scorers
+   const loadTopScorers = () => {
 
+    fetch(`http://localhost:3000/response`)
+         .then((response) => response.json())
+         .then((data) => console.log(data))
+
+
+   }
+   loadTopScorers()
 })
