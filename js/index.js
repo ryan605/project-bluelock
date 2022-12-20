@@ -3,6 +3,7 @@ document.addEventListener(`DOMContentLoaded`, () =>{
     const topScorer = document.getElementById(`player`)
     const searchRow = document.getElementById(`search-result`)
     const topScorerLink = document.getElementById(`countries-link`)
+    const team = document.getElementById(`team`)
     const teamLink = document.getElementById(`team-link`)
 
     //click events
@@ -10,6 +11,11 @@ document.addEventListener(`DOMContentLoaded`, () =>{
         topScorer.removeAttribute("hidden")
         topScorer.style.display="flex"
     })
+    teamLink.addEventListener(`click`, () => {
+        team.removeAttribute("hidden")
+        team.style.display="flex"
+    })
+
     //search event listener
     const searchForm = document.getElementById(`search-form`)
     const searchInput = document.getElementById(`search`)
@@ -24,16 +30,68 @@ document.addEventListener(`DOMContentLoaded`, () =>{
         searchRow.removeAttribute("hidden")
     })
 
+    const createTeams = (image, tag) => {
+        const divRow = document.createElement(`div`)
+        divRow.classList.add(`row`,`mt-3`)
+
+        const divBody = document.createElement(`div`)
+        divBody.classList.add(`card`,`col-4`)
+
+        const divImg = document.createElement(`div`)
+        divImg.classList.add(`img-div`)
+
+        const teamImg = document.createElement(`img`)
+        teamImg.classList.add(`card-img-top`)
+        teamImg.src=image
+
+        const teamTitle = document.createElement(`h4`)
+        teamTitle.classList.add(`team-title`)
+        teamTitle.innerText=tag
+
+        //appending
+        divImg.appendChild(teamImg)
+
+        divBody.appendChild(divImg)
+        divBody.appendChild(teamTitle)
+        
+        divRow.appendChild(divBody)
+
+        return divRow
+    }
+
+    const loadTeams = () => {
+        fetch(`http://localhost:3000/response`)
+             .then((response) => response.json())
+             .then((data) =>{
+                for(let i=0; i<data.length; i++){
+                    const teamData = data[i].statistics
+                    
+                    const image = teamData.logo
+
+                    const tag = teamData.name
+
+                    const teamElement = createTeams(image, tag)
+
+                    team.appendChild(teamElement)
+                    }
+
+             })
+    }
+    loadTeams()
+    
 
 
 
-    const createTopScorers = (photo, title, goals) =>{
+    const createTopScorers = (photo, title) =>{
 
         const rowDiv = document.createElement(`div`)
         rowDiv.classList.add(`row`,`mt-3`)
 
         const bodyDiv = document.createElement(`div`)
         bodyDiv.classList.add(`card`,`col-4`)
+
+        const imgDiv = document.createElement(`div`)
+        imgDiv.classList.add(`img-div`)
 
         const playerImg = document.createElement(`img`)
         playerImg.classList.add(`card-img-top`)
@@ -43,20 +101,20 @@ document.addEventListener(`DOMContentLoaded`, () =>{
         playerTitile.classList.add(`card-title`)
         playerTitile.innerText = title
 
-        const playerScores = document.createElement(`p`)
-        playerScores.classList.add(`scores`)
-        playerScores.innerText = goals
 
         //appending
 
-        bodyDiv.appendChild(playerImg)
+        imgDiv.appendChild(playerImg)
+
+        bodyDiv.appendChild(imgDiv)
         bodyDiv.appendChild(playerTitile)
-        bodyDiv.appendChild(playerScores)
+        
 
         rowDiv.appendChild(bodyDiv)
 
         return rowDiv
     }
+
    //load top scorers
    const loadTopScorers = () => {
 
@@ -69,12 +127,10 @@ document.addEventListener(`DOMContentLoaded`, () =>{
             const image = imageData.photo
 
             const playerData = data[i].player
-            const title = playerData.firstname
+            const title = playerData.name
 
-            const goalData = data[i].statistics
-            const goals = goalData.statistics
-
-            const playerElement = createTopScorers(image, title, goals)
+           
+            const playerElement = createTopScorers(image, title)
 
             topScorer.appendChild(playerElement)
             
