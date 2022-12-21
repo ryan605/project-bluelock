@@ -38,7 +38,7 @@ Follow the following steps:
 
 live server link
 
-      ryan605.github.io/project-bluelock/
+     https://ryan605.github.io/
 
 
 

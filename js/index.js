@@ -59,7 +59,7 @@ document.addEventListener(`DOMContentLoaded`, () =>{
         return divRow
     }
 
-    const loadTeams = () => {
+     const loadTeams = async() => {
         fetch(`http://localhost:3000/response`)
              .then((response) => response.json())
              .then((data) =>{
@@ -125,6 +125,7 @@ document.addEventListener(`DOMContentLoaded`, () =>{
 
             const imageData = data[i].player            
             const image = imageData.photo
+            console.log(image)
 
             const playerData = data[i].player
             const title = playerData.name
